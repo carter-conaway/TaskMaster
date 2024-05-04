@@ -13,7 +13,7 @@ class Todo(db.Model):
 
     def __repr__(self):
         return '<Task %r>' % self.id
-    
+
     # with app.app_context():
     #     db.create_all()
 
@@ -29,7 +29,7 @@ def index():
             return redirect('/')
         except:
             return 'There was an issue adding your task'
-        
+
     else:
         tasks = Todo.query.order_by(Todo.date_created).all()
         return render_template('index.html', tasks=tasks)
@@ -44,7 +44,7 @@ def delete(id):
         return redirect('/')
     except:
         return 'There was an issue deleting your task'
-    
+
 @app.route('/update/<int:id>', methods=['GET', 'POST'])
 def update(id):
     task = Todo.query.get_or_404(id)
